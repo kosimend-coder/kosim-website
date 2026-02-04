@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>(주)고심 - KOSIM Inc.</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <style>
+        /* =========================================
+           CSS 디자인 (스타일 시트)
+           ========================================= */
+        :root {
+            --primary-color: #2E7D32; /* 고심 그린 */
+            --accent-color: #E64A19;  /* 토마토 레드 */
+            --text-dark: #1D1D1F;     /* 텍스트 블랙 */
+            --text-gray: #86868B;     /* 텍스트 그레이 */
+            --bg-light: #F5F5F7;      /* 배경 라이트그레이 */
+            --white: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            word-break: keep-all;
+            background-color: var(--white);
+        }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* 네비게이션 */
+        nav {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .nav-container {
+            width: 90%; max-width: 1200px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { font-weight: 800; font-size: 1.2rem; color: var(--primary-color); letter-spacing: -0.5px; }
+        .menu { display: flex; gap: 30px; }
+        .menu a { font-size: 0.9rem; font-weight: 500; color: var(--text-dark); transition: color 0.3s; }
+        .menu a:hover { color: var(--primary-color); }
+
+        /* 히어로 섹션 (메인) */
+        header {
+            height: 100vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+            
+            /* 👇 배경 이미지 연결 (main-bg.jpg) */
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('main-bg.jpg'); 
+            
+            background-size: cover; background-position: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
+        header h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 20px; letter-spacing: -1px; line-height: 1.2; }
+        header p { font-size: 1.2rem; opacity: 0.9; max-width: 600px; }
+        .btn-main {
+            margin-top: 40px; padding: 15px 35px;
+            background: var(--primary-color); color: white;
+            border-radius: 30px; font-weight: 600; transition: all 0.3s;
+        }
+        .btn-main:hover { background: #1B5E20; transform: scale(1.05); }
+
+        /* 섹션 공통 */
+        section { padding: 100px 0; }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+        .section-header { margin-bottom: 60px; text-align: center; }
+        .section-header span { color: var(--primary-color); font-weight: 700; font-size: 0.9rem; display: block; margin-bottom: 10px; }
+        .section-header h2 { font-size: 2.5rem; font-weight: 700; }
+
+        /* 비즈니스 1: 식품 제조 (OEM & HACCP) */
+        .business-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+        }
+        .text-content h3 { font-size: 2rem; margin-bottom: 20px; }
+        .text-content p { color: var(--text-gray); margin-bottom: 30px; font-size: 1.05rem; }
+        
+        .badge-container { display: flex; gap: 15px; margin-bottom: 30px; }
+        .badge {
+            padding: 8px 16px; background: #E8F5E9; color: var(--primary-color);
+            border-radius: 8px; font-weight: 600; font-size: 0.9rem;
+            display: flex; align-items: center; gap: 5px;
+        }
+
+        .oem-card {
+            background: var(--bg-light); padding: 30px; border-radius: 20px;
+            border-left: 5px solid var(--accent-color);
+        }
+        .oem-card h4 { font-size: 1.2rem; margin-bottom: 10px; }
+        .oem-card p { font-size: 0.95rem; color: var(--text-gray); }
+
+        .img-placeholder {
+            width: 100%; height: 400px; background-color: #eee; border-radius: 20px;
+            /* 👇 공장 이미지 연결 (haccp-factory.jpg) */
+            background-image: url('haccp-factory.jpg'); 
+            background-size: cover; background-position: center;
+        }
+
+        /* 비즈니스 2: 자사 브랜드 (고심끝에) */
+        .brand-section { background-color: var(--bg-light); }
+        .brand-box {
+            background: white; border-radius: 24px; padding: 50px; text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            max-width: 800px; margin: 0 auto;
+        }
+        .brand-logo { 
+            font-family: serif; font-size: 2rem; font-weight: bold; color: var(--text-dark); margin-bottom: 20px; 
+        }
+        .brand-desc { color: var(--text-gray); margin-bottom: 30px; }
+        .product-tag { 
+            display: inline-block; padding: 5px 15px; margin: 5px; 
+            border: 1px solid #ddd; border-radius: 20px; font-size: 0.9rem; 
+        }
+
+        /* 비즈니스 3: IT 서비스 (위시팜) */
+        .wishfarm-section { position: relative; overflow: hidden; }
+        .wishfarm-content {
+            display: flex; flex-direction: column; align-items: center; text-align: center;
+        }
+        .app-icon {
+            width: 100px; height: 100px; background: var(--primary-color); border-radius: 22px;
+            margin-bottom: 30px; display: flex; align-items: center; justify-content: center;
+            font-size: 3rem; color: white; box-shadow: 0 10px 20px rgba(46, 125, 50, 0.3);
+        }
+        .features {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; width: 100%;
+        }
+        .feature-item { padding: 30px; background: white; border: 1px solid #eee; border-radius: 20px; transition: 0.3s; }
+        .feature-item:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .feature-item h4 { font-size: 1.2rem; margin: 15px 0 10px; }
+        .feature-item p { font-size: 0.9rem; color: var(--text-gray); }
+
+        /* 문의하기 (Contact Form) 디자인 */
+        .contact-section { background-color: #f9f9f9; padding: 80px 0; }
+        .contact-form-box {
+            background: white; max-width: 600px; margin: 0 auto;
+            padding: 40px; border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        .form-group { margin-bottom: 20px; text-align: left; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.95rem; }
+        .form-control {
+            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;
+            font-size: 1rem; font-family: inherit; transition: 0.3s;
+        }
+        .form-control:focus { border-color: var(--primary-color); outline: none; }
+        textarea.form-control { resize: vertical; min-height: 120px; }
+        .btn-submit {
+            width: 100%; padding: 15px; background: var(--primary-color); color: white;
+            border: none; border-radius: 8px; font-size: 1rem; font-weight: 700;
+            cursor: pointer; transition: 0.3s; margin-top: 10px;
+        }
+        .btn-submit:hover { background: #1B5E20; }
+
+        /* 푸터 */
+        footer { background: #111; color: #888; padding: 60px 0; font-size: 0.9rem; }
+        .footer-content { display: flex; justify-content: space-between; align-items: flex-start; }
+        .company-info h3 { color: white; margin-bottom: 20px; }
+        .company-info p { margin-bottom: 8px; }
+        .copyright { margin-top: 40px; border-top: 1px solid #333; padding-top: 20px; font-size: 0.8rem; }
+
+        /* 모바일 반응형 */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.5rem; }
+            .business-grid { grid-template-columns: 1fr; }
+            .features { grid-template-columns: 1fr; }
+            .footer-content { flex-direction: column; gap: 30px; }
+            .nav-container .menu { display: none; }
+            .contact-form-box { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo">KOSIM Inc.</div>
+            <ul class="menu">
+                <li><a href="#about">About</a></li>
+                <li><a href="#manufacturing">Food Factory</a></li>
+                <li><a href="#brand">Brand</a></li>
+                <li><a href="#it">Wish Farm</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <h1>농업의 진심을 담아<br>기술로 연결합니다.</h1>
+        <p>전북 완주 기반 농업회사법인 (주)고심<br>HACCP 제조부터 IT 플랫폼까지, 농업의 새로운 미래를 만듭니다.</p>
+        <a href="#manufacturing" class="btn-main">사업영역 보기</a>
+    </header>
+
+    <section id="manufacturing">
+        <div class="container">
+            <div class="section-header">
+                <span>Manufacturing & OEM</span>
+                <h2>안전하고 정직한<br>식품 제조</h2>
+            </div>
+            <div class="business-grid">
+                <div class="text-content">
+                    <div class="badge-container">
+                        <div class="badge">✅ HACCP 인증 시설</div>
+                        <div class="badge">🏭 최신 자동화 설비</div>
+                    </div>
+                    <h3>믿을 수 있는 품질,<br>HACCP 인증 제조 시설</h3>
+                    <p>
+                        (주)고심은 엄격한 위생 기준을 준수하는 HACCP 인증 시설을 보유하고 있습니다.
+                        원물 세척부터 착즙, 살균, 포장까지 전 과정을 철저하게 관리합니다.
+                    </p>
+                    
+                    <div class="oem-card">
+                        <h4>🤝 OEM 생산 파트너십</h4>
+                        <p>현재 <strong>'따옴농장'</strong> 등 유명 브랜드의 토마토즙을<br>전문적으로 위탁 생산(OEM) 및 납품하고 있습니다.</p>
+                    </div>
+                </div>
+                <div class="image-content">
+                    <div class="img-placeholder"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="brand" class="brand-section">
+        <div class="container">
+            <div class="section-header">
+                <span>Private Brand Launching</span>
+                <h2>수많은 고민 끝에 탄생한<br>프리미엄 즙 브랜드</h2>
+            </div>
+            <div class="brand-box">
+                <div class="brand-logo">"고심끝에"</div>
+                <p class="brand-desc">
+                    자연 그대로의 맛을 담기 위해, 우리는 수없이 고민했습니다.<br>
+                    물 한 방울 섞지 않은 100% 리얼 과채주스를 곧 만나보세요.
+                </p>
+                <div style="margin-top: 20px;">
+                    <span class="product-tag">🍅 토마토즙</span>
+                    <span class="product-tag">🥕 당근즙</span>
+                    <span class="product-tag">🥬 비트즙</span>
+                    <span class="product-tag">🍋 레몬생강즙</span>
+                </div>
+                <br>
+                <div class="badge" style="display:inline-block; margin-top:20px; background:#333; color:white;">2026년 런칭 예정</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="it" class="wishfarm-section">
+        <div class="container">
+            <div class="wishfarm-content">
+                <div class="app-icon">🌱</div>
+                <div class="section-header">
+                    <span>Agri-Tech Platform</span>
+                    <h2>Wish Farm (위시팜)</h2>
+                </div>
+                <p style="font-size: 1.1rem; color: #555; max-width: 700px;">
+                    "습관을 키우면, 진짜 농산물이 집으로!"<br>
+                    사용자가 앱에서 목표를 달성하고 작물을 키우면,<br>
+                    (주)고심이 직접 재배한 신선한 농산물을 보상으로 보내드립니다.
+                </p>
+
+                <div class="features">
+                    <div class="feature-item">
+                        <div style="font-size: 2rem;">🎯</div>
+                        <h4>습관 형성</h4>
+                        <p>매일 할 일을 체크하고<br>목표를 달성하세요.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div style="font-size: 2rem;">🎮</div>
+                        <h4>작물 육성 게임</h4>
+                        <p>나만의 밭에서<br>토마토, 당근을 키워보세요.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div style="font-size: 2rem;">📦</div>
+                        <h4>100% 실물 보상</h4>
+                        <p>다 자란 작물은<br>실제 집으로 배송됩니다.</p>
+                    </div>
+                </div>
+
+                <a href="#" class="btn-main" style="margin-top: 50px; background-color: #333;">Google Play 출시 예정</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <span>Contact Us</span>
+                <h2>OEM 및 제휴 문의</h2>
+                <p style="color:#666; margin-top:10px;">(주)고심과 함께할 파트너를 기다립니다.</p>
+            </div>
+
+            <div class="contact-form-box">
+                <form action="https://formspree.io/f/xqelrgwq" method="POST">
+                    
+                    <div class="form-group">
+                        <label>문의 유형</label>
+                        <select name="category" class="form-control">
+                            <option value="OEM 생산 문의">OEM 생산 문의</option>
+                            <option value="위시팜 제휴 문의">위시팜 제휴 문의</option>
+                            <option value="기타 문의">기타 문의</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>담당자 성함 / 회사명</label>
+                        <input type="text" name="name" class="form-control" placeholder="예: 홍길동 / (주)따옴농장" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>이메일 또는 연락처</label>
+                        <input type="text" name="contact" class="form-control" placeholder="답변 받으실 연락처를 남겨주세요" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>문의 내용</label>
+                        <textarea name="message" class="form-control" placeholder="내용을 자유롭게 적어주세요."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">문의 내용 보내기</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="company-info">
+                    <h3>KOSIM Inc.</h3>
+                    <p><strong>상호명:</strong> 농업회사법인 (주)고심</p>
+                    <p><strong>대표자:</strong> 고승완 (Seungwan Ko)</p>
+                    <p><strong>주소:</strong> 전북특별자치도 완주시 구이면 구이로</p>
+                    <p><strong>주요사업:</strong> 식품제조가공, 농업 소프트웨어 개발, 전자상거래</p>
+                </div>
+                <div class="contact-info">
+                    <p><strong>Contact Us</strong></p>
+                    <p>Email: kosimend@gmail.com</p> 
+                    <p>Tel: +82-10-6225-7585</p>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2026 KOSIM Inc. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
